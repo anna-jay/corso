@@ -6,6 +6,7 @@
         <title>Raphaël · Graffle</title>
         <script src="js/raphael.js" type="text/javascript" charset="utf-8"></script>
         <script src="js/graffle.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/jquery-1.10.2.js" type="text/javascript" charset="utf-8"></script>
         <style type="text/css" media="screen">
             #holder {
                 -moz-border-radius: 10px;
@@ -26,9 +27,10 @@
         </style>
     </head>
     <body>
-        <p>Drag shapes around.</p>
+		<input id="txt" type="text" value=" insert text">
+        <button id="box">Add Box</button>
+		<button id="oval">Add Oval</button>
         <div id="holder"></div>
-        <p id="copy">Demo of <a href="http://raphaeljs.com/">Raphaël</a>—JavaScript Vector Library</p>
     </body>
 	
 </html>

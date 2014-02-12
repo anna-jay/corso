@@ -75,17 +75,20 @@ window.onload = function () {
         this.animate({"fill-opacity": 1}, 500);
 		
 		if (this.header) {
-			this.ox = this.getBBox().x;
-			this.oy = this.getBBox().y;
+			this.header.ox = this.header.attr("x");
+			this.header.oy = this.header.attr("y");
 		}
+		
     },
         move = function (dx, dy) {
             var att = this.type == "rect" ? {x: this.ox + dx, y: this.oy + dy} : {cx: this.ox + dx, cy: this.oy + dy};
             this.attr(att);
+			
 			if (this.header) {
-			  att = {x: this.ox + 50 + dx, y: this.oy + 30 + dy};
+			  att = {x: this.header.ox + dx, y: this.header.oy + dy};
 			  this.header.attr(att);
 			}
+			
             for (var i = connections.length; i--;) {
                 r.connection(connections[i]);
             }
@@ -143,5 +146,38 @@ window.onload = function () {
 		shapes[i].header = r.addText(shapes[i], text[i]);
 		shapes[i].attr({fill: 'white', "fill-opacity": 1,});
     }	
+	
+	$("#box").click(function(){
+		var txt = $("#txt").val();
+		shapes.push(r.rect(20, 20, 100, 75, 10));
+		var i = shapes.length - 1;
+		shapes[i].attr({fill: 'white', stroke: color, "fill-opacity": 1, "stroke-width": 2, cursor: "move"});
+        shapes[i].drag(move, dragger, up);
+		shapes[i].header = r.addText(shapes[i], txt);
+		
+	});
+	
+	$("#oval").click(function(){
+		var txt = $("#txt").val();
+		shapes.push(r.ellipse(100, 50, 50, 40));
+		var i = shapes.length - 1;
+		shapes[i].attr({fill: 'white', stroke: color, "fill-opacity": 1, "stroke-width": 2, cursor: "move"});
+        shapes[i].drag(move, dragger, up);
+		shapes[i].header = r.addText(shapes[i], txt);
+	});
+	
+	
+	$('ellipse, rect').click(function(){
+		var link1 = this;
+		//jQuery.inArray( this, shapes );
+		alert(link1);
+	});
+	
+	
+	
+	
+	
+	
+	
 	
 };
